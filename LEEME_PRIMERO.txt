@@ -1,0 +1,215 @@
+Formato-Mariategui 0.4.4 + App Yared.AI 0.16.2 para Moodle 4.5
+==============================================================
+
+ARCHIVOS
+--------
+1) format_flexsections_4.1.7_2026-10-22.zip
+   Dependencia obligatoria. Instalar primero si no existe.
+
+2) format_flextiles_0.4.4_2026-10-23.zip
+   Formato de curso Formato-Mariategui. El componente tecnico sigue
+   siendo format_flextiles para no romper cursos existentes.
+
+3) local_ai_yared_course_0.16.2_2026-10-23.zip
+   App Yared.AI para Moodle. Incluye el nuevo asistente
+   Yared.AI Creador de Cuestionario.
+
+4) PAQUETE_YARED_AI_FORMATO_MARIATEGUI_0.4.4_APP_0.16.2_2026-10-23.zip
+   Paquete con los tres ZIP, este LEEME y SHA256SUMS.txt.
+   No se instala directamente: extraer e instalar cada ZIP por separado.
+
+HASHES SHA256
+-------------
+format_flexsections_4.1.7_2026-10-22.zip
+501C503A9348FCC7897DB4A43E2E20E32F462AFD41A0912265682F42A33225B9
+179.593 bytes
+
+format_flextiles_0.4.4_2026-10-23.zip
+7F9D38E6C68D3877B7FD10D8B47BD22D58481C7E495261D511EDC76EDD4F7F18
+43.733 bytes
+
+local_ai_yared_course_0.16.2_2026-10-23.zip
+777B1A0D3CA130BD21820AD5DE20D04F6EF2D857F2FF46F5D35D10D03D10AC72
+219.971 bytes
+
+NOVEDADES DE FORMATO-MARIATEGUI 0.4.4
+--------------------------------------
+- La cabecera de la seccion ya no muestra la etiqueta "Seccion".
+- Se retiro el bloque de descripcion de la seccion y de la subseccion.
+  Las actividades, los controles y el resto del contenido siguen visibles.
+- El bloque flextiles-section-badges sigue siendo la zona de insignias de
+  Moodle (visibilidad, restricciones, etc.); no se usa para la descripcion.
+- El nombre visible sigue siendo Formato-Mariategui. El componente tecnico
+  format_flextiles, los cursos, respaldos y la tabla format_flextiles_options
+  no cambian.
+- Reordenar secciones y subsecciones con "Mover hacia arriba" y
+  "Mover hacia abajo" en el menu de acciones. El movimiento respeta el
+  padre: una subseccion se mueve dentro de su seccion principal.
+- La jerarquia se conserva al cambiar temporalmente a otro formato de
+  curso y volver a Formato-Mariategui. Moodle borra las opciones del formato
+  anterior; Formato-Mariategui guarda una copia propia en la tabla
+  format_flextiles_options y la restaura al volver.
+- El campo parent se guarda por id de seccion y se traduce al numero
+  actual al restaurar, por lo que tambien resiste renumeraciones.
+- Se conservan el modo Mosaico/Acordeon, color, icono, imagen del
+  mosaico, ancho del contenido y demas opciones del curso.
+- Nueva tabla creada automaticamente por la actualizacion del plugin.
+- Incluye Ancho del contenido: Estandar 830 px, Amplio 1400 px
+  (por defecto) y Ancho completo; en moviles/tabletas se mantiene 100%.
+
+NOVEDADES DE LA APP 0.16.2
+--------------------------
+- Nuevo asistente Yared.AI Creador de Cuestionario. Se abre desde la
+  tarjeta "Crear cuestionario" de Yared.AI Creador de Pregunta, desde el
+  boton "Crear cuestionario con este banco" despues de generar preguntas,
+  y desde el menu Mas del curso.
+- El docente elige uno o varios bancos de preguntas; el formulario
+  muestra cuantas preguntas tiene cada uno.
+- Pide nombre, descripcion, cantidad de preguntas (10 por defecto) y la
+  seccion del curso donde se colocara el cuestionario.
+- Crea un cuestionario estandar de Moodle (mod_quiz), no un modulo de
+  actividad nuevo. Despues se edita con el editor normal de cuestionarios
+  y los cambios afectan al cuestionario real.
+- Opciones por defecto: 2 intentos, calificacion mas alta, 30 minutos,
+  todas las preguntas en una pagina, 20 puntos y respuestas mezcladas.
+- Las preguntas son aleatorias por intento. Si se eligen varios bancos,
+  las 10 preguntas se reparten entre ellos; cada intento recibe una
+  seleccion distinta. Moodle evita repetir la misma pregunta en un intento.
+- El cuestionario se agrega al final de la seccion elegida y se muestra un
+  aviso con el nombre de la seccion y un enlace para editarlo.
+- Funciona en cursos con formato Formato-Mariategui: se puede colocar dentro de una
+  seccion principal o de una subseccion (por ejemplo, tema01).
+- La lista "Seccion donde se colocara" muestra las subsecciones de
+  Formato-Mariategui indentadas con una flecha y el nombre de su seccion principal.
+  Asi se puede elegir tema01, tema02, etc. y no solo las secciones de
+  primer nivel.
+- Los mensajes del asistente usan el nombre Formato-Mariategui cuando
+  explican el comportamiento de las subsecciones.
+
+ANTES DE INSTALAR EN PRODUCCION
+--------------------------------
+- Hacer respaldo completo de la base de datos y de moodledata.
+- Probar primero en un curso de prueba o en una copia del curso real.
+- No convertir un curso real sin respaldo y sin haber validado antes la
+  navegacion, la edicion y el respaldo/restauracion.
+- Este paquete esta marcado como BETA.
+
+ORDEN DE INSTALACION
+--------------------
+1. Si NO existe Flexsections:
+   Instalar format_flexsections_4.1.7_2026-10-22.zip desde
+   Administracion del sitio > Extensiones > Instalar extensiones.
+   Si YA existe Flexsections 4.1.7 o superior, no hace falta reemplazarlo.
+
+2. Instalar format_flextiles_0.4.4_2026-10-23.zip.
+
+3. Instalar local_ai_yared_course_0.16.2_2026-10-23.zip.
+
+4. Entrar como administrador y completar la notificacion de actualizacion.
+   La actualizacion crea la tabla format_flextiles_options y copia las
+   opciones de los cursos que ya usan Formato-Mariategui.
+
+5. Crear un curso de prueba y elegir el formato "Formato-Mariategui".
+
+6. Crear secciones y usar "Anadir subseccion" para construir la jerarquia:
+   Section_01 > tema01 > contenido01.
+
+7. En el formulario de cada seccion se configuran icono, color e imagen.
+   En cada subseccion se elige "Mosaico" o "Acordeon". Las secciones de
+   primer nivel siempre son mosaicos.
+
+8. En la configuracion del curso se eligen columnas, resumen, cantidad de
+   elementos y ancho del contenido.
+
+COMO CREAR UN CUESTIONARIO
+--------------------------
+- Ir a Yared.AI Creador de Pregunta y pulsar la tarjeta "Crear cuestionario".
+- O usar el menu Mas del curso > Yared.AI Creador de Cuestionario.
+- Elegir uno o varios bancos. El asistente muestra la cantidad de preguntas.
+- Escribir el nombre y, si se quiere, la descripcion.
+- Indicar cuantas preguntas (10 por defecto) y la seccion.
+- Pulsar "Crear cuestionario". Se crea un cuestionario real de Moodle.
+- Para cambiarlo, usar "Editar cuestionario" o la pestana Preguntas del
+  cuestionario. No se edita desde el asistente.
+
+COMO REORDENAR
+--------------
+- Activar "Modo de edicion".
+- Abrir el menu de acciones de la seccion o subseccion.
+- Usar "Mover hacia arriba" o "Mover hacia abajo".
+- Al mover una subseccion, la pagina vuelve a su seccion principal y la
+  subseccion conserva su padre.
+- El boton "Mover" existente sigue disponible para cambiar una seccion
+  de padre, por ejemplo para insertar un tema dentro de otra seccion
+  principal.
+
+QUE ESTA VALIDADO EN LOCAL (Moodle 4.5.7+)
+------------------------------------------
+- Instalacion y actualizacion de Formato-Mariategui 0.4.4. Se verifico por
+  renderizado que la cabecera no incluye la etiqueta "Seccion" ni el bloque
+  de descripcion, y que las actividades siguen dentro de la seccion.
+- Creacion de la tabla format_flextiles_options y copia inicial de las
+  opciones de los cursos Formato-Mariategui existentes.
+- Movimiento de tema03 por encima de tema01 y regreso al orden original
+  usando las acciones Subir/Bajar.
+- Cambio de Formato-Mariategui a Temas y regreso a Formato-Mariategui en un curso temporal:
+  se conservaron parent, displaymode, collapsed, color e icono, y las
+  subsecciones volvieron a quedar dentro de su seccion principal.
+- Cambio de Formato-Mariategui a Flexsections y regreso: jerarquia y modo
+  acordeon restaurados.
+- Conversion de Flexsections a Formato-Mariategui: parent y collapsed copiados.
+- Eliminacion de una seccion anterior al padre y renumeracion: la
+  subseccion se restauro con el nuevo numero de su padre.
+- El curso demo 6 quedo restaurado con Section_01 > tema01/tema02/tema03
+  y Section_02 > tema04.
+- La funcionalidad del asistente se valido en la app 0.16.1: creo
+  cuestionarios reales con 2 intentos, calificacion mas alta, 30 minutos,
+  10 preguntas en una pagina y 20 puntos. Se verifico que las 10 preguntas
+  aleatorias se reparten entre dos bancos (5 + 5) y que un intento de vista
+  previa mostro 10 preguntas.
+- La funcionalidad del asistente se valido en la app 0.16.1: se probo la
+  creacion en una seccion normal y en la subseccion tema01 de un curso
+  Formato-Mariategui; el cuestionario quedo en la seccion correcta. Tambien
+  se probaron los errores de "sin bancos" y "no hay suficientes preguntas".
+- La funcionalidad del asistente se valido en la app 0.16.1: la lista
+  "Seccion donde se colocara" mostro las subsecciones indentadas con flecha
+  y el nombre de su seccion principal. Se creo un cuestionario real dentro
+  de la subseccion "historia del teclado" y se verifico que quedo en esa
+  subseccion, no en la principal.
+- App 0.16.2: solo cambian los mensajes para usar el nombre
+  Formato-Mariategui. Se valido con upgrade, php -l,
+  check_database_schema y get_string; no se repitio la creacion por
+  interfaz en 0.16.2.
+- Los cursos y cuestionarios temporales usados en las pruebas se
+  eliminaron.
+
+PENDIENTE DE VALIDAR EN PRODUCCION
+----------------------------------
+- Respaldo de base de datos y moodledata antes de instalar.
+- Comportamiento con el tema visual real del sitio.
+- Permisos de estudiantes y secciones ocultas/restringidas.
+- Flujo completo de respaldo/restauracion en el servidor de produccion.
+- Prueba de carga con cursos grandes.
+- Recorrido completo con el editor y los menus del tema real.
+- Probar el asistente con los bancos reales de produccion y revisar el
+  cuestionario creado antes de publicarlo a los estudiantes.
+
+NOTAS
+-----
+- No se necesita mod_subsection para la jerarquia.
+- La imagen del mosaico es una URL publica HTTP(S), no un archivo subido.
+- El enlace "volver a la seccion" en actividades se puede desactivar en
+  la configuracion del curso.
+- Al convertir un curso de Flexsections a Formato-Mariategui, las subsecciones
+  quedan en modo mosaico por defecto; el modo se cambia una por una.
+- No se incluyen claves API ni tokens.
+- El asistente no crea una actividad "CuestionarioV2": crea el
+  cuestionario estandar de Moodle para conservar intentos, informes,
+  respaldo/restauracion y edicion nativa.
+
+ROLLBACK
+--------
+- Desinstalar el plugin desde Administracion del sitio > Extensiones.
+- Restaurar la base de datos y moodledata desde el respaldo previo.
+- Si se convirtio un curso, volver a su formato anterior desde la
+  configuracion del curso y restaurar el respaldo si fuera necesario.
